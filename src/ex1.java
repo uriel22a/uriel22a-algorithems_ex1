@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class ex1 {
     public static void main(String[] args) {
-        int gridRows = 8;
-        int gridCols = 7;
-
-        int k = 3; // the robots number
+        int gridRows = 5;
+        int gridCols = 5;
+        int k = 2; // the robots number
+        //black tiles ratio in Board class
 
         List<Robot> robots = new ArrayList<>();
         Board board = new Board(gridRows, gridCols);
@@ -58,24 +58,35 @@ public class ex1 {
             }
         }
 
-        boolean isRobot =false;
-        System.out.println("B -black tile");
-        System.out.println(" W - white tile");
-        System.out.println(" R - robot");
-        for(int i=0;i<board.getRows();i++){
-            for(int j=0;j<board.getCols();j++){
-               for (int r=0;r<k;r++){
-                if(robot_pos[r].getRow() == i&&robot_pos[r].getCol() == j){System.out.print("R ");isRobot=true;}}
+        try {
+            boolean isRobot = false;
+            System.out.println("B -black tile");
+            System.out.println(" W - white tile");
+            System.out.println(" R - robot");
+            for (int i = 0; i < board.getRows(); i++) {
+                for (int j = 0; j < board.getCols(); j++) {
+                    for (int r = 0; r < k; r++) {
+                        if (robot_pos[r].getRow() == i && robot_pos[r].getCol() == j) {
+                            System.out.print("R ");
+                            isRobot = true;
+                        }
+                    }
 
-               if(!isRobot){
-                    if (board.getCell(i, j).isWalkable()) {
-                        System.out.print(("W "));
-                    }else{
-                        System.out.print("B ");
-                    }}isRobot=false;
+                    if (!isRobot) {
+                        if (board.getCell(i, j).isWalkable()) {
+                            System.out.print(("W "));
+                        } else {
+                            System.out.print("B ");
+                        }
+                    }
+                    isRobot = false;
 
-            }System.out.println();
-        }
+                }
+                System.out.println();
+            }
+        }catch (Exception e){
+            System.out.println("not enouth walkable tiles"); }
+
 
         if (robots.isEmpty()) {
             System.out.println("No robots placed on valid cells. Exiting.");
