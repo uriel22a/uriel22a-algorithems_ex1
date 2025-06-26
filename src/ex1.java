@@ -45,13 +45,36 @@ public class ex1 {
                 }
             }
         }
+        Cell robot_pos[] = new Cell[k];
+        int robot_index=0;
         for (int i = 0; i < k; i++) {
             if (i < allWalkableCells.size()) {
                 robots.add(new Robot(i + 1, allWalkableCells.get(i)));
+                robot_pos[robot_index]=robots.get(robot_index).getCurrentCell();
+                robot_index++;
             } else {
                 System.out.println("Not enough unique walkable cells to place " + k + " robots. Placed " + i + " robots.");
                 break;
             }
+        }
+
+        boolean isRobot =false;
+        System.out.println("B -black tile");
+        System.out.println(" W - white tile");
+        System.out.println(" R - robot");
+        for(int i=0;i<board.getRows();i++){
+            for(int j=0;j<board.getCols();j++){
+               for (int r=0;r<k;r++){
+                if(robot_pos[r].getRow() == i&&robot_pos[r].getCol() == j){System.out.print("R ");isRobot=true;}}
+
+               if(!isRobot){
+                    if (board.getCell(i, j).isWalkable()) {
+                        System.out.print(("W "));
+                    }else{
+                        System.out.print("B ");
+                    }}isRobot=false;
+
+            }System.out.println();
         }
 
         if (robots.isEmpty()) {
