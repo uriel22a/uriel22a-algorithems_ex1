@@ -2,10 +2,10 @@ import java.util.*;
 
 public class Graph<T> {
     private final Map<T, Vertex<T>> vertices = new HashMap<>();
-    private final boolean directed;
+    private final boolean isDirected;
 
      public Graph(boolean directed) {
-        this.directed = directed;
+        this.isDirected = directed;
     }
 
 
@@ -14,11 +14,11 @@ public class Graph<T> {
     }
 
     public void addEdge(T from, T to) {
-        Vertex<T> vFrom = addVertex(from);
-        Vertex<T> vTo   = addVertex(to);
-        vFrom.addNeighbor(vTo);
-        if (!directed) {
-            vTo.addNeighbor(vFrom);
+        Vertex<T> vertexFrom = addVertex(from);
+        Vertex<T> vertexTo   = addVertex(to);
+        vertexFrom.addNeighbor(vertexTo);
+        if (!isDirected) {
+            vertexTo.addNeighbor(vertexFrom);
         }
     }
 
@@ -43,10 +43,10 @@ public class Graph<T> {
         while (!queue.isEmpty()) {
             Vertex<T> u = queue.poll();
             int d = dist.get(u);
-            for (Vertex<T> nbr : u.getNeighbors()) {
-                if (!dist.containsKey(nbr)) {
-                    dist.put(nbr, d + 1);
-                    queue.add(nbr);
+            for (Vertex<T> neighbor : u.getNeighbors()) {
+                if (!dist.containsKey(neighbor)) {
+                    dist.put(neighbor, d + 1);
+                    queue.add(neighbor);
                 }
             }
         }
