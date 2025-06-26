@@ -39,6 +39,9 @@ public class Board {
     public int getCols() {
         return cols;
     }
+    public double getObstacleProbability() {
+        return obstacleProbability;
+    }
     public List<Cell> getAllWalkableCells() {
         List<Cell> result = new ArrayList<>();
         for (int i = 0; i < rows; i++)

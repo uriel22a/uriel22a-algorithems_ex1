@@ -90,6 +90,9 @@ public class ex1 {
             }
         }
 
+        System.out.println("Board Size: " + gridRows + "x" + gridCols);
+        System.out.println("Board Type: Randomly generated with " + (int)(board.getObstacleProbability() * 100) + "% obstacle probability.");
+        System.out.println("Number of Robots (k): " + k +"\n");
         if (optimalTargetCell != null) {
             System.out.println("Optimal meeting cell: " + optimalTargetCell);
             System.out.println("Minimal total steps: " + minTotalSteps);
